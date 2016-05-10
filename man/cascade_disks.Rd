@@ -20,6 +20,7 @@ a SpatialPointsDataFrame with a unqiue attribute \code{id}
 Creates SpatialPolygonDataFrame for a suite of imbriqued disks
 }
 \examples{
+library(sp)
 pt <- SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
 res <- cascade_disks(center = pt, spacings = 10)
 plot(res, col = "lightgrey") 

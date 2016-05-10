@@ -20,8 +20,9 @@ An object of class \code{SpatialPolygonsDataFrame}
 Splits a disc into wedges
 }
 \examples{
+library(sp)
 pt <- SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
-splits <- split_disc(center = pt, radius = 100, splits = 50)
+splits <- split_disc(center = pt, width = 100, splits = 50)
 
 plot(splits, col = "lightgrey")
 plot(pt, add = TRUE, pch = "+", col = 2)

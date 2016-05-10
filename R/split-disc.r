@@ -16,8 +16,9 @@
 #' @author Pierre Roudier
 #' 
 #' @examples 
+#' library(sp)
 #' pt <- SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
-#' splits <- split_disc(center = pt, radius = 100, splits = 50)
+#' splits <- split_disc(center = pt, width = 100, splits = 50)
 #' 
 #' plot(splits, col = "lightgrey")
 #' plot(pt, add = TRUE, pch = "+", col = 2)
@@ -70,3 +71,6 @@ split_disc <- function(center, width, splits) {
   # Adds IDs
   SpatialPolygonsDataFrame(res, data = data.frame(id = 1:length(res)), match.ID = FALSE)
 }
+
+#' @import sp
+ NULL
