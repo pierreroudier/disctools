@@ -8,21 +8,20 @@
 #' @param splits number of splits/wedges
 #' @return An object of class \code{SpatialPolygonsDataFrame}
 #' 
+#' @import sp
 #' @importFrom rgeos gBuffer gIntersection
-#' @importFrom sp coordinates SpatialPoints Polygon Polygons SpatialPolygons SpatialPolygonsDataFrame
 #' 
 #' @export
 #' 
 #' @author Pierre Roudier
 #' 
 #' @examples 
-#' pt <- sp::SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
+#' pt <- SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
 #' splits <- split_disc(center = pt, radius = 100, splits = 50)
 #' 
 #' plot(splits, col = "lightgrey")
 #' plot(pt, add = TRUE, pch = "+", col = 2)
 #' 
-
 split_disc <- function(center, width, splits) {
   
   # This code does not work for n = 2
@@ -66,5 +65,8 @@ split_disc <- function(center, width, splits) {
   sp_pols <- SpatialPolygons(pols)
   
   # Crop with original circle
-  gIntersection(sp_pols, disc, byid = TRUE)
+  res <- gIntersection(sp_pols, disc, byid = TRUE)
+  
+  # Adds IDs
+  SpatialPolygonsDataFrame(res, data = data.frame(id = 1:length(res)), match.ID = FALSE)
 }

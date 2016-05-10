@@ -2,21 +2,21 @@
 #' @description Creates SpatialPolygonDataFrame for a suite of imbriqued disks
 #' @aliases cascade_disks
 #' 
-#' @usage cascadeDisks(center, spacings, quadsegs)
+#' @usage cascade_disks(center, spacings, quadsegs)
 #' @param center SpatialPoints or SpatialPointsDataFrame object as defined in package sp
 #' @param spacings vector giving the width of each ring
 #' @param quadsegs Number of line segments to use to approximate a quarter circle.
 #' @return a SpatialPointsDataFrame with a unqiue attribute \code{id}
 #' 
+#' @import sp 
 #' @importFrom rgeos gBuffer gDifference
-#' @importFrom sp spChFIDs SpatialPolygonsDataFrame rbind.SpatialPolygonsDataFrame
 #' 
 #' @export
 #' 
 #' @author Pierre Roudier
 #' 
 #' @examples
-#' pt <- sp::SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
+#' pt <- SpatialPoints(data.frame(x = 1000000 * runif(1), y = 1000000 * runif(1)))
 #' res <- cascade_disks(center = pt, spacings = 10)
 #' plot(res, col = "lightgrey") 
 #' plot(pt, add = TRUE, col = 2)
@@ -39,6 +39,5 @@ cascade_disks <- function(center, spacings, quadsegs = 20) {
     }
   }
 
-  do.call(rbind, res) %>%
-    SpatialPolygonsDataFrame(data = data.frame(id = 1:length(spacings)), match.ID = FALSE)
+  SpatialPolygonsDataFrame(do.call(rbind, res), data = data.frame(id = 1:length(spacings)), match.ID = FALSE)
 }
