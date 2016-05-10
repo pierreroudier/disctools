@@ -1,0 +1,12 @@
+Package: disctools
+Title: Various Tools to Handle and Modify Spatial Discs and Circles
+Version: 0.1-0
+Authors@R: person("Pierre", "Roudier", email = "roudierp@landcareresearch.co.nz", role = c("aut", "cre"))
+Description: A set of various utility tools I use to handle spatial discs as represented in the sp package.
+Depends: R (>= 3.2)
+Imports: 
+  sp,
+  rgeos
+License: GPL-3
+URL: http://github.com/pierreroudier/disctools
+LazyData: true
