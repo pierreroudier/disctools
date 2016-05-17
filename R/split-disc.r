@@ -30,8 +30,8 @@ split_disc <- function(center, width, splits) {
   
   disc <- gBuffer(center, width = width, quadsegs = 20)
   
-  # Create the vector of angles (in radians)
-  alpha <- seq(0, 2 * pi, length.out = splits + 1)
+  # Create the vector of angles (in radians) starting at pi / 2 (vertical, up)
+  alpha <- seq(pi / 2, 2 * pi + pi / 2, length.out = splits + 1)
   
   # First we create a collection of points that will generate the
   # lines that go from the center of the disc
@@ -46,9 +46,10 @@ split_disc <- function(center, width, splits) {
   fudge <- 1.5 * tan(alpha[2] / 2) * x_mid_angle
   
   # Compute the X and Y and create the split points data.frame
-  x <- coordinates(center)[, 1] + cos(alpha) * (width + fudge)
+  x <- coordinates(center)[, 1] + cos(alpha) * (width + fudge) 
   y <- coordinates(center)[, 2] + sin(alpha) * (width + fudge)
-  split_pts <- SpatialPoints(data.frame(x, y))
+  
+  split_pts <- SpatialPoints(data.frame(x = x, y = y))
   
   # Now create polygons from the center of the disk and
   # the split points
