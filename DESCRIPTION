@@ -1,6 +1,6 @@
 Package: disctools
 Title: Various Tools to Handle and Modify Spatial Discs and Circles
-Version: 0.1-0
+Version: 0.1-1
 Authors@R: person("Pierre", "Roudier", email = "roudierp@landcareresearch.co.nz", role = c("aut", "cre"))
 Description: A set of various utility tools I use to handle spatial discs as
     represented in the sp package.
