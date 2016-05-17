@@ -70,7 +70,11 @@ split_disc <- function(center, width, splits) {
   res <- gIntersection(sp_pols, disc, byid = TRUE)
   
   # Adds IDs
-  SpatialPolygonsDataFrame(res, data = data.frame(id = 1:length(res)), match.ID = FALSE)
+  ids <- 1:length(res)
+  # Organise IDs clockwise
+  ids <- abs(max(ids) - ids + 1)
+  # Creates result SPDF
+  SpatialPolygonsDataFrame(res, data = data.frame(id = ids), match.ID = FALSE)
 }
 
 #' @import sp
